@@ -60,7 +60,7 @@
   },
   "jump_pads": {
     "count": 3,
-    "radius": 56,
+    "radius": 36,
     "launch_velocity": 650,
     "gravity": 1500
   }

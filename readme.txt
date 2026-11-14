@@ -1,7 +1,29 @@
 HAVEN ARENA
 
-Run the game from the repository root:
+Run from the repository root to start the web server:
     python main.py
+
+Open http://localhost:8000 in your browser. Use `localhost` rather than
+`127.0.0.1`; pygbag's browser resources can be blocked if the hostnames differ.
+To install the supported web runner:
+    python -m pip install pygbag==0.8.2
+
+Run `python main.py --help` to see launcher options. If port 8000 is already
+in use, choose another port:
+    python main.py --port 8001
+Then open http://localhost:8001.
+
+Alternatively, start pygbag directly:
+    python -m pygbag .
+
+Quick fixes:
+    No module named pygbag:
+        python -m pip install pygbag==0.8.2
+    Browser shows a loading or BrowserFS error:
+        python -m pip install --force-reinstall pygbag==0.8.2
+        Then refresh http://localhost:8000.
+    Browser reports NotSameOrigin or COEP errors:
+        Use http://localhost:8000, not http://127.0.0.1:8000.
 
 Game settings are loaded from `settings/settings.json`. Adjust the resolution
 preset, fullscreen mode, target FPS, player health and combat values, enemy
@@ -40,6 +62,7 @@ allows personal, non-commercial projects, permits modifications, and requires
 credit to Ozzbit Games.
 
 Source Assest:
+
 https://hsdsz.itch.io/cerberus-infernal-guardian-fantasy-rpg-005-2d-animated-boss-pack
 https://hsdsz.itch.io/minotaur-berserker-fantasy-rpg-002-2d-animated-character-pack#google_vignette
 https://dotto-e.itch.io/skeleton-platformer

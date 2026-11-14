@@ -7,7 +7,7 @@ from scripts.combat import Combatant
 class Player(Combatant):
     SPEED = 250
     RUN_SPEED = 370
-    ATTACK_COOLDOWN = 0.25
+    ATTACK_COOLDOWN = 0.15
     ATTACK_WINDUP = 0.10
     ATTACK_DURATION = 0.34
     ATTACK_RANGE = 125
@@ -79,7 +79,12 @@ class Player(Combatant):
         self.animation_timer = 0
         return True
 
-    def update(self, dt, keys, enemies, blocking=False, jump_pads=None):
+    def update(
+        self, dt, keys, enemies, blocking=False, jump_pads=None, virtual_keys=()
+    ):
+        def pressed(key):
+            return keys[key] or key in virtual_keys
+
         self.attack_cooldown = max(0, self.attack_cooldown - dt)
         self.damage_flash = max(0, self.damage_flash - dt)
         self.blocking = blocking and self.alive
@@ -87,14 +92,14 @@ class Player(Combatant):
         move = pygame.Vector2()
         if self.alive:
             move = pygame.Vector2(
-                int(keys[pygame.K_d] or keys[pygame.K_RIGHT])
-                - int(keys[pygame.K_a] or keys[pygame.K_LEFT]),
-                int(keys[pygame.K_s] or keys[pygame.K_DOWN])
-                - int(keys[pygame.K_w] or keys[pygame.K_UP]),
+                int(pressed(pygame.K_d) or pressed(pygame.K_RIGHT))
+                - int(pressed(pygame.K_a) or pressed(pygame.K_LEFT)),
+                int(pressed(pygame.K_s) or pressed(pygame.K_DOWN))
+                - int(pressed(pygame.K_w) or pressed(pygame.K_UP)),
             )
             if move.length_squared():
                 move.normalize_ip()
-                running = keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]
+                running = pressed(pygame.K_LSHIFT) or pressed(pygame.K_RSHIFT)
                 speed = self.RUN_SPEED if running else self.SPEED
                 self.x += move.x * speed * dt
                 self.y += move.y * speed * dt
@@ -122,7 +127,7 @@ class Player(Combatant):
         elif self.blocking:
             self.state = "idle"
         elif move.length_squared():
-            running = keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]
+            running = pressed(pygame.K_LSHIFT) or pressed(pygame.K_RSHIFT)
             self.state = "run" if running else "walk"
         else:
             self.state = "idle"
