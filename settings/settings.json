@@ -1,0 +1,69 @@
+{
+  "difficulty": {
+    
+	
+	"easy": {
+      "name": "Easy",
+      "level": 1,
+      "description": "Basic tasks for beginners",
+	  "map": "e"
+    },
+    "medium": {
+      "name": "Medium",
+      "level": 2,
+      "map" : "m"
+    },
+    "hard": {
+      "name": "Hard",
+      "level": 3,
+      "map": "h"
+    }
+},
+  "game_settings": {
+  "resolution_preset": "low",
+  "presets": {
+    "low": {
+      "name": "Low",
+      "width": 1280,
+      "height": 720
+    },
+    "medium": {
+      "name": "Medium",
+      "width": 1600,
+      "height": 900
+    },
+    "high": {
+      "name": "High",
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "fullscreen": false,
+  "window_title": "Haven Arena",
+  "fps": 60,
+  "volume": 0.8,
+  "spawning": {
+    "initial_enemy_count": 2,
+    "max_enemies": 10,
+    "interval_seconds": 3.5,
+    "initial_delay_seconds": 1.0
+  },
+  "player": {
+    "max_health": 120,
+    "walk_speed": 250,
+    "run_speed": 370,
+    "attack_damage": 30,
+    "attack_range": 125,
+    "attack_cooldown": 0.25,
+    "attack_windup": 0.1,
+    "attack_duration": 0.34
+  },
+  "jump_pads": {
+    "count": 3,
+    "radius": 56,
+    "launch_velocity": 650,
+    "gravity": 1500
+  }
+}
+}
+	

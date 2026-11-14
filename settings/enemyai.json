@@ -1,0 +1,19 @@
+{
+    "enemy_ai": {
+        "aggressive": {
+            "detection_range": 200,
+            "attack_range": 50,
+            "attack_cooldown": 1.5
+        },
+        "defensive": {
+            "detection_range": 150,
+            "attack_range": 30,
+            "attack_cooldown": 2.0
+        },
+        "passive": {
+            "detection_range": 100,
+            "attack_range": 20,
+            "attack_cooldown": 3.0
+        }
+    }
+}
