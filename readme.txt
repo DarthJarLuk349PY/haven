@@ -16,14 +16,6 @@ Then open http://localhost:8001.
 Alternatively, start pygbag directly:
     python -m pygbag .
 
-Quick fixes:
-    No module named pygbag:
-        python -m pip install pygbag==0.8.2
-    Browser shows a loading or BrowserFS error:
-        python -m pip install --force-reinstall pygbag==0.8.2
-        Then refresh http://localhost:8000.
-    Browser reports NotSameOrigin or COEP errors:
-        Use http://localhost:8000, not http://127.0.0.1:8000.
 
 Game settings are loaded from `settings/settings.json`. Adjust the resolution
 preset, fullscreen mode, target FPS, player health and combat values, enemy
@@ -38,7 +30,7 @@ Controls:
     E                   Spawn an enemy
     R                   Restart after defeat
     1-4                 Change the arena background
-
+use pyhton main.py --help
 Walk onto a glowing jump pad to launch upward. The player rises, falls under
 gravity, and automatically bounces again if they land on a pad.
 The pads use `bounce_pad/_bounce_pad.png`, and the window icon loads from
