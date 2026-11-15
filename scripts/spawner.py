@@ -12,17 +12,8 @@ class EnemySpawner:
         self.timer = initial_delay
         self.next_enemy = 0
 
-    def spawn(self, width, height):
-        side = random.choice(("left", "right", "top", "bottom"))
-        margin = 55
-        if side == "left":
-            x, y = margin, random.randint(margin, height - margin)
-        elif side == "right":
-            x, y = width - margin, random.randint(margin, height - margin)
-        elif side == "top":
-            x, y = random.randint(margin, width - margin), margin
-        else:
-            x, y = random.randint(margin, width - margin), height - margin
+    def spawn(self, margin, height):
+        x, y = margin, height // 2
 
         enemy_types = (Skeleton, Minotaur, Hellhound)
         enemy_type = enemy_types[self.next_enemy % len(enemy_types)]

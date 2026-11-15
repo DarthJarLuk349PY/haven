@@ -1,9 +1,7 @@
 import asyncio
 import sys
 from pathlib import Path
-
 import pygame
-
 from scripts.config import load_game_settings
 from scripts.jump_pads import JumpPadField
 from scripts.maps import BACKGROUND_SCENES, Background
@@ -17,13 +15,10 @@ class Game:
         self.config = load_game_settings()
         pygame.init()
         pygame.display.set_caption(self.config.title)
-        flags = pygame.FULLSCREEN if self.config.fullscreen else 0
+        fflags = 0 if self.is_web else (pygame.FULLSCREEN if self.config.fullscreen else 0)
         self.screen = pygame.display.set_mode(
-            (self.config.width, self.config.height), flags
+            (self.config.width, self.config.height), fflags
         )
-        icon_path = Path(__file__).resolve().parent / "game_icon" / "icon.png"
-        icon = pygame.image.load(str(icon_path)).convert_alpha()
-        pygame.display.set_icon(pygame.transform.smoothscale(icon, (32, 32)))
         self.width, self.height = self.screen.get_size()
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 28)
@@ -55,7 +50,6 @@ class Game:
         )
         for _ in range(self.config.initial_enemy_count):
             self.enemies.append(self.spawner.spawn(self.width, self.height))
-        self.running = True
 
     def handle_events(self):
         for event in pygame.event.get():

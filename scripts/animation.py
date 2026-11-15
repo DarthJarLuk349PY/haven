@@ -1,10 +1,11 @@
 from pathlib import Path
-
+from functools import lru_cache
 import pygame
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 
 
+@lru_cache(maxsize=128)
 def load_strip(path, frame_width, frame_height, frame_count=None, row=0):
     sheet_path = ROOT_DIR / path
     if frame_width <= 0 or frame_height <= 0 or row < 0:
