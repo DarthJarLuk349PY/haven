@@ -46,7 +46,7 @@ profile's detection range controls when an enemy notices and pursues the player;
 attack range controls when it can hit, and attack cooldown is the delay between
 attacks. Changes are read when the game starts.
 
-The four backgrounds are loaded from `_backroud_assets/PNG` and can be changed
+The four backgrounds are loaded from `background_assets/PNG` and can be changed
 without restarting.
 
 The player sprites are from Ozzbit Games' free asset pack. The included license

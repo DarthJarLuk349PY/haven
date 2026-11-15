@@ -5,10 +5,10 @@ import pygame
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 BACKGROUND_SCENES = {
-    "1": ("Terrace", "_backroud_assets/PNG/1/terrace.png"),
-    "2": ("Throne Room", "_backroud_assets/PNG/2/throne room.png"),
-    "3": ("Castle", "_backroud_assets/PNG/3/castle.png"),
-    "4": ("Dead Forest", "_backroud_assets/PNG/4/dead forest.png")
+    "1": ("Terrace", "background_assets/PNG/1/terrace.png"),
+    "2": ("Throne Room", "background_assets/PNG/2/throne room.png"),
+    "3": ("Castle", "background_assets/PNG/3/castle.png"),
+    "4": ("Dead Forest", "background_assets/PNG/4/dead forest.png"),
 
 }
 

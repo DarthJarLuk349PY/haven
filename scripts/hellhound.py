@@ -10,7 +10,6 @@ class Hellhound(Enemy):
             max_health=200,
             speed=165,
             damage=16,
-            attack_range=72,
             scale=0.28,
             ai_profile="passive",
         )

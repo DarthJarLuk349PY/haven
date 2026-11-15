@@ -21,6 +21,7 @@ class UserInterface:
             "paused": ("Paused", "The arena is paused"),
             "game_over": ("You were defeated", "Try again or return to the menu"),
             "controls": ("Controls", "Input differs by platform"),
+            "quit": ("Thanks for playing", "You can close this browser tab"),
         }
         menus = {
             "menu": (("Play", "start"), ("Controls", "controls"), ("Quit", "quit")),
@@ -36,6 +37,7 @@ class UserInterface:
                 ("Quit", "quit"),
             ),
             "controls": (("Back", "back"),),
+            "quit": (),
         }
         title, subtitle = titles[state]
         buttons = menus[state]
@@ -91,13 +93,18 @@ class UserInterface:
             self.menu_buttons.append((action, rect))
             content_y += button_height + 12
 
-        hint = "Tap a button" if self.is_web else "Click a button or press Enter"
+        if state == "quit":
+            hint = "Close this browser tab to exit"
+        else:
+            hint = "Tap a button" if self.is_web else "Click a button or press Enter"
         self._draw_text(
             hint, self.font, (165, 181, 185), panel.centerx, panel.bottom - 22, True
         )
 
     def handle_menu_event(self, event, state):
         if event.type == pygame.KEYDOWN:
+            if state == "game_over" and event.key == pygame.K_r:
+                return "retry"
             if event.key in (pygame.K_RETURN, pygame.K_SPACE):
                 return self.menu_buttons[0][0] if self.menu_buttons else None
             if event.key == pygame.K_ESCAPE:
@@ -211,6 +218,7 @@ class UserInterface:
             "Shift: run   |   Left mouse or F: attack",
             "Ctrl or right mouse: block   |   Esc: pause",
             "E: spawn an enemy   |   1-4: change the scene",
+            "R: restart after defeat",
         )
 
     def _touch_rects(self):

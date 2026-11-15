@@ -10,7 +10,6 @@ class Minotaur(Enemy):
             max_health=500,
             speed=88,
             damage=22,
-            attack_range=100,
             scale=0.56,
             ai_profile="defensive",
         )

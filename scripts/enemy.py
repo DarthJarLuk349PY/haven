@@ -6,12 +6,11 @@ from scripts.enemy_ai import EnemyAI
 
 class Enemy(Combatant):
     def __init__(
-        self, x, y, max_health, speed, damage, attack_range, scale, ai_profile
+        self, x, y, max_health, speed, damage, scale, ai_profile
     ):
         super().__init__(x, y, max_health)
         self.speed = speed
         self.damage = damage
-        self.attack_range = attack_range
         self.scale = scale
         self.ai = EnemyAI(ai_profile)
         self.state = "idle"
@@ -23,12 +22,10 @@ class Enemy(Combatant):
         self.block_timer = 0
         self.block_cooldown = 0
         self.hit_flash = 0
-        self.dead = False
         self._animation_state = "idle"
 
     def update(self, dt, target):
         if not self.alive:
-            self.dead = True
             return
 
         self.hit_flash = max(0, self.hit_flash - dt)
@@ -41,8 +38,6 @@ class Enemy(Combatant):
         damage = super().take_damage(amount, attacker_x)
         if damage:
             self.hit_flash = 0.14
-        if not self.alive:
-            self.dead = True
         return damage
 
     def _advance_animation(self, dt):

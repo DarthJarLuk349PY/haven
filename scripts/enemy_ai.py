@@ -71,7 +71,7 @@ class EnemyAI:
         enemy.block_timer = max(0, enemy.block_timer - dt)
         enemy.block_cooldown = max(0, enemy.block_cooldown - dt)
 
-        if enemy.attack_hit_timer is not None: 
+        if enemy.attack_hit_timer is not None:
             enemy.attack_hit_timer -= dt
             if enemy.attack_hit_timer <= 0:
                 hit_distance = math.hypot(target.x - enemy.x, target.y - enemy.y)

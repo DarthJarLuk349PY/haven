@@ -10,7 +10,6 @@ class Skeleton(Enemy):
             max_health=75,
             speed=145,
             damage=12,
-            attack_range=68,
             scale=2,
             ai_profile="aggressive",
         )

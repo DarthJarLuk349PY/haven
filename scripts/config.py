@@ -34,7 +34,6 @@ class GameSettings:
     fullscreen: bool
     fps: int
     title: str
-    volume: float
     initial_enemy_count: int
     max_enemies: int
     spawn_interval: float
@@ -97,12 +96,6 @@ def load_game_settings(path=SETTINGS_PATH):
     if initial_enemy_count > max_enemies:
         raise ValueError("initial_enemy_count cannot exceed max_enemies")
 
-    volume = game_settings.get("volume")
-    if isinstance(volume, bool) or not isinstance(volume, (int, float)):
-        raise ValueError("Setting 'volume' must be a number from 0 to 1")
-    if not math.isfinite(volume) or not 0 <= volume <= 1:
-        raise ValueError("Setting 'volume' must be a number from 0 to 1")
-
     attack_duration = _positive_number(player, "attack_duration")
     attack_windup = _positive_number(player, "attack_windup")
     if attack_windup >= attack_duration:
@@ -114,7 +107,6 @@ def load_game_settings(path=SETTINGS_PATH):
         fullscreen=fullscreen,
         fps=_positive_number(game_settings, "fps", integer=True),
         title=title.strip(),
-        volume=float(volume),
         initial_enemy_count=initial_enemy_count,
         max_enemies=max_enemies,
         spawn_interval=_positive_number(spawning, "interval_seconds"),

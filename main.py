@@ -15,6 +15,7 @@ class Game:
         self.config = load_game_settings()
         pygame.init()
         pygame.display.set_caption(self.config.title)
+        self.is_web = sys.platform in ("emscripten", "wasi")
         fflags = 0 if self.is_web else (pygame.FULLSCREEN if self.config.fullscreen else 0)
         self.screen = pygame.display.set_mode(
             (self.config.width, self.config.height), fflags
@@ -23,12 +24,12 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 28)
         self.large_font = pygame.font.Font(None, 64)
-        self.is_web = sys.platform in ("emscripten", "wasi")
         self.background = Background((self.width, self.height))
         self.jump_pads = JumpPadField(
             self.width, self.height, self.config.jump_pads
         )
         self.ui = UserInterface(self)
+        self.running = True
         self.state = "menu"
         self.menu_return_state = "menu"
         self.elapsed_time = 0
